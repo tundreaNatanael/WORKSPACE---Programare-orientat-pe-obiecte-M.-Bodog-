@@ -23,7 +23,12 @@ public class DBHelper {
 	
 	public static void closeConnection() throws SQLException {
 		if(conn != null && !conn.isClosed())
-			conn.close();
+			try {
+				conn.close();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
 	}
 	
 }

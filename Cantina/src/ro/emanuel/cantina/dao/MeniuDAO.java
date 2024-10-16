@@ -11,7 +11,7 @@ import ro.emanuel.DBHelper;
 import ro.emanuel.pojo.Meniu;
 
 public class MeniuDAO {
-	public static Meniu getMeniuById(int id) throws SQLException {
+	public static Meniu getMenuById(int id) throws SQLException {
 		Connection conn = DBHelper.getConnection();
 		String query = "SELECT * FROM cantina where id=?";
 		PreparedStatement getMeniu = conn.prepareStatement(query);
@@ -27,7 +27,7 @@ public class MeniuDAO {
 		return null;
 	}
 	
-	public static ArrayList<Meniu> getAllMeniu() throws SQLException {
+	public static ArrayList<Meniu> getAllMenus() throws SQLException {
 		Connection conn = DBHelper.getConnection();
 		String query = "SELECT * FROM cantina";
 		Statement stmt = conn.createStatement();
@@ -44,5 +44,19 @@ public class MeniuDAO {
 		}
 		DBHelper.closeConnection();
 		return meniuri;
+	}
+	
+	public static boolean createMenu (Meniu menu) throws SQLException {
+		Connection conn = DBHelper.getConnection();
+		
+		String query = "INSERT INTO `cantina`(`fel1`, `fel2`, `desert`, `pret`) VALUES (?,?,?,?)";
+		PreparedStatement createMenu = conn.prepareStatement(query);
+		
+		createMenu.setString(1, menu.getFel1());
+		createMenu.setString(2, menu.getFel2());
+		createMenu.setString(3, menu.getDesert());
+		createMenu.setInt(4, menu.getPret());
+
+		return createMenu.executeUpdate() > 0;
 	}
 }
