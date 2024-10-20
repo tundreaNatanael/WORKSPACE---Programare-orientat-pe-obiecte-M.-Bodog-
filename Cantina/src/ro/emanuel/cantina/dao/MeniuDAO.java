@@ -11,7 +11,7 @@ import ro.emanuel.DBHelper;
 import ro.emanuel.pojo.Meniu;
 
 public class MeniuDAO {
-	public static Meniu getMenuById(int id) throws SQLException {
+	public static Meniu getById(int id) throws SQLException {
 		Connection conn = DBHelper.getConnection();
 		String query = "SELECT * FROM cantina where id=?";
 		PreparedStatement getMeniu = conn.prepareStatement(query);
@@ -27,7 +27,7 @@ public class MeniuDAO {
 		return null;
 	}
 	
-	public static ArrayList<Meniu> getAllMenus() throws SQLException {
+	public static ArrayList<Meniu> getAll() throws SQLException {
 		Connection conn = DBHelper.getConnection();
 		String query = "SELECT * FROM cantina";
 		Statement stmt = conn.createStatement();
@@ -46,7 +46,7 @@ public class MeniuDAO {
 		return meniuri;
 	}
 	
-	public static boolean createMenu (Meniu menu) throws SQLException {
+	public static boolean create (Meniu menu) throws SQLException {
 		Connection conn = DBHelper.getConnection();
 		
 		String query = "INSERT INTO `cantina`(`fel1`, `fel2`, `desert`, `pret`) VALUES (?,?,?,?)";
@@ -56,7 +56,39 @@ public class MeniuDAO {
 		createMenu.setString(2, menu.getFel2());
 		createMenu.setString(3, menu.getDesert());
 		createMenu.setInt(4, menu.getPret());
-
-		return createMenu.executeUpdate() > 0;
+		
+		boolean response = createMenu.executeUpdate() > 0;
+		DBHelper.closeConnection();
+		return response;
+	}
+	
+	public static boolean delete(int id) throws SQLException {
+		Connection conn = DBHelper.getConnection();
+		
+		String query = "DELETE FROM `cantina` WHERE id=?";
+		PreparedStatement deleteMenu = conn.prepareStatement(query);
+		
+		deleteMenu.setInt(1, id);
+		
+		boolean response = deleteMenu.executeUpdate() > 0;
+		DBHelper.closeConnection();
+		return response;
+	}
+	
+	public static boolean update(Meniu menu) throws SQLException {
+		Connection conn = DBHelper.getConnection();
+		
+		String query = "UPDATE `cantina` SET `fel1`=?,`fel2`=?,`desert`=?,`pret`=? WHERE id=?";
+		PreparedStatement updateMenu = conn.prepareStatement(query);
+		
+		updateMenu.setString(1, menu.getFel1());
+		updateMenu.setString(2, menu.getFel2());
+		updateMenu.setString(3, menu.getDesert());
+		updateMenu.setInt(4, menu.getPret());
+		updateMenu.setInt(5, menu.getId());
+		
+		boolean response = updateMenu.executeUpdate() > 0;
+		DBHelper.closeConnection();
+		return response;
 	}
 }

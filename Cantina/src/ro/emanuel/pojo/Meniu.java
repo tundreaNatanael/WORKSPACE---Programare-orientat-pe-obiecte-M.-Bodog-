@@ -15,6 +15,10 @@ public class Meniu {
 		this.pret = pret;
 	}
 
+	public int getId() {
+		return id;
+	}
+	
 	public String getFel1() {
 		return fel1;
 	}
