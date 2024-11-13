@@ -7,23 +7,22 @@
 </head>
 <body>
 	<h1>Songs</h1>
-	<table>
+	<table border="1">
 		<tr>
 			<th>ID</th>
 			<th>Title</th>
 			<th>Author</th>
-			<th>Music Sheet</th>
-			<th>verses</th>
-			<th>Nr Votes</th>
+			<th>Details</th>
 		</tr>
 		<c:forEach var="song" items="${all}">
 			<tr>
-				<th> <c:out value="${song.id}" /> </th>
-				<th> <c:out value="${song.title}" /> </th>
-				<th> <c:out value="${song.author}" /> </th>
-				<th> <c:out value="${song.linkMusicSheet}" /> </th>
-				<th> <c:out value="${song.verses}" /> </th>
-				<th> <c:out value="${song.nrVotes}" /> </th>
+				<td> <c:out value="${song.id}" /> </td>
+				<td> <c:out value="${song.title}" /> </td>
+				<td> <c:out value="${song.author}" /> </td>
+				<td> 
+					<a href="<c:url value='/song?id=${song.id}'/>" />
+					Details
+				</td>
 			</tr>
 		</c:forEach>
 		
