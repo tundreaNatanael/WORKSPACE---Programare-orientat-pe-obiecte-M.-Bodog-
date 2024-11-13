@@ -10,7 +10,7 @@ import ro.emanuel.pojo.Laptop;
 @Controller
 public class LaptopController {
 
-    @GetMapping("/laptops")
+    @GetMapping("/laptops") 
     public String getLaptopBrand(@RequestParam(name = "brand", required = false, defaultValue = "default") String brand, Model model) {
         int length = brand.length();
         String odd = (length % 2 != 0) ? "odd" : "even";
