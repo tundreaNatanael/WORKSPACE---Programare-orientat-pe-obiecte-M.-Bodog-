@@ -12,7 +12,7 @@ import ro.emanuel.songs.pojo.Song;
 
 public class SongDAO {
 
-	public static Song getById(int id) throws SQLException {
+	public static Song getById(int id) throws SQLException, ClassNotFoundException {
 		Connection conn = DBHelper.getConnection();
 		String query = "SELECT * FROM songs where id=?";
 		PreparedStatement getSong = conn.prepareStatement(query);
@@ -28,7 +28,7 @@ public class SongDAO {
 		return null;
 	}
 	
-	public static ArrayList<Song> getAll () throws SQLException {
+	public static ArrayList<Song> getAll () throws SQLException, ClassNotFoundException {
 		Connection conn = DBHelper.getConnection();
 		String query = "SELECT * FROM songs";
 		Statement stmt = conn.createStatement();

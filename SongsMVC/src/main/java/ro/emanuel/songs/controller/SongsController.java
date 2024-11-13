@@ -14,7 +14,7 @@ import ro.emanuel.songs.pojo.Song;
 public class SongsController {
 
 	@GetMapping("/song")
-	public String singleSong(@RequestParam int id, Model model) throws SQLException {
+	public String singleSong(@RequestParam int id, Model model) throws SQLException, ClassNotFoundException {
 		Song song = SongDAO.getById(id);
 		
 		model.addAttribute("s", song);

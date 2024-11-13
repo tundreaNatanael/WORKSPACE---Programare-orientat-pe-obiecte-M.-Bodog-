@@ -9,7 +9,9 @@ public class DBHelper {
 
 	private static Connection conn;
 	
-	public static Connection getConnection() throws SQLException {
+	public static Connection getConnection() throws SQLException, ClassNotFoundException {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
 		if(conn == null || conn.isClosed()) {
 			Properties connectionProps = new Properties();
 			connectionProps.put("user", "root");
