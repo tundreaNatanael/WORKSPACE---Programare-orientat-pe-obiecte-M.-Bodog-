@@ -34,7 +34,7 @@ public class SongDAO {
 		Statement stmt = conn.createStatement();
 		
 		ResultSet rs = stmt.executeQuery(query);
-		ArrayList<Song> song = new ArrayList<Song>();
+		ArrayList<Song> songs = new ArrayList<Song>();
 		while(rs.next()) {
 			int id = rs.getInt("id");
 			String title = rs.getString("title");
@@ -42,10 +42,10 @@ public class SongDAO {
 			String linMusicSheet = rs.getString("link_music_sheet");
 			String verses = rs.getString("verses");
 			int nrVotes = rs.getInt("nr_votes");
-			song.add(new Song(id, title, author, linMusicSheet, verses, nrVotes));
+			songs.add(new Song(id, title, author, linMusicSheet, verses, nrVotes));
 		}
 		DBHelper.closeConnection();
-		return song;
+		return songs;
 	}
 
 }

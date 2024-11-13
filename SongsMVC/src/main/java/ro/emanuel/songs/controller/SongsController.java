@@ -1,6 +1,7 @@
 package ro.emanuel.songs.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,5 +21,14 @@ public class SongsController {
 		model.addAttribute("s", song);
 		
 		return "song.jsp";
+	}
+	
+	@GetMapping("/songs")
+	public String allSongs(Model model) throws SQLException, ClassNotFoundException {
+		ArrayList<Song> allSongs = SongDAO.getAll();
+		
+		model.addAttribute("all", allSongs);
+		
+		return "songs.jsp";
 	}
 }
