@@ -12,7 +12,7 @@ import ro.emanuel.songs.pojo.Song;
 
 public class SongDAO {
 
-	public static Song GetById(int id) throws SQLException {
+	public static Song getById(int id) throws SQLException {
 		Connection conn = DBHelper.getConnection();
 		String query = "SELECT * FROM songs where id=?";
 		PreparedStatement getSong = conn.prepareStatement(query);
