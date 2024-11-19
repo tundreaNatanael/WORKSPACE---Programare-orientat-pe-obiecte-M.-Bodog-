@@ -5,7 +5,11 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ro.emanuel.songs.dao.SongDAO;
@@ -30,5 +34,22 @@ public class SongsController {
 		model.addAttribute("all", allSongs);
 		
 		return "songs.jsp";
+	}
+	
+	@GetMapping("/song/edit/{id}")
+	public String editSong (Model model, @PathVariable int id) throws ClassNotFoundException, SQLException {
+		Song song = SongDAO.getById(id);
+		
+		model.addAttribute("song", song);
+		
+		return "/songEdit.jsp";
+	}
+	
+	@PostMapping("/song/edit/")
+	public String saveEditSong (@ModelAttribute("song") Song song, Model map, BindingResult result) throws ClassNotFoundException, SQLException {
+		
+		SongDAO.updateSong(song);
+		
+		return "redirect:/songs";
 	}
 }

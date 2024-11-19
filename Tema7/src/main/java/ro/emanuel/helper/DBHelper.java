@@ -1,4 +1,4 @@
-package ro.emanuel.songs.helper;
+package ro.emanuel.helper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +22,7 @@ public class DBHelper {
 			connectionProps.put("password", "");
 			
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/java_songs", 
+					"jdbc:mysql://localhost:3306/tema7", 
 					connectionProps);
 		}
 		return conn;

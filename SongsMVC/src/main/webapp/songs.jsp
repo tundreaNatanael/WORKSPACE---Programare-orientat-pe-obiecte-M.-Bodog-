@@ -23,6 +23,10 @@
 					<a href="<c:url value='/song?id=${song.id}'/>" />
 					Details
 				</td>
+				<td> 
+					<a href="<c:url value='/song/edit/${song.id}'/>" />
+					Editeaza
+				</td>
 			</tr>
 		</c:forEach>
 		

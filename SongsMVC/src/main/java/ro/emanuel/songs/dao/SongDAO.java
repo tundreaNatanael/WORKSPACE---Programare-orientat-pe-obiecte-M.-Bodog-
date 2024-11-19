@@ -47,5 +47,23 @@ public class SongDAO {
 		DBHelper.closeConnection();
 		return songs;
 	}
+	
+	public static void updateSong(Song song) throws SQLException, ClassNotFoundException {
+		Connection conn = DBHelper.getConnection();
+		String query = "UPDATE `songs` SET `title`='?',`author`='?',`link_music_sheet`='?',`verses`='?',`nr_votes`='?' WHERE id='?'";
+		PreparedStatement setSong = conn.prepareStatement(query);
+		
+		setSong.setString(1, song.getTitle());
+		setSong.setString(2, song.getAuthor());
+		setSong.setString(3, song.getLinkMusicSheet());
+		setSong.setString(4, song.getVerses());
+		setSong.setInt(5, song.getNrVotes());
+		setSong.setInt(6, song.getId());
+		
+		
+		ResultSet rs = setSong.executeQuery();
+		DBHelper.closeConnection();
+		
+	}
 
 }
