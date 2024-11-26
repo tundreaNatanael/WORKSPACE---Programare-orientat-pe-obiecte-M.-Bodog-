@@ -52,4 +52,21 @@ public class SongsController {
 		
 		return "redirect:/songs";
 	}
+	
+	@GetMapping("/songs/createSong")
+	public String createSong (Model model) throws ClassNotFoundException, SQLException {
+		
+		Song song = new Song();
+		model.addAttribute("newSong", song);
+		
+		return "/createSong.jsp";
+	}
+	
+	@PostMapping("/songs/saveNewSong")
+	public String saveNewSong (@ModelAttribute("song") Song song, Model map, BindingResult result) throws ClassNotFoundException, SQLException {
+		
+		SongDAO.create(song);
+		
+		return "redirect:/songs";
+	}
 }

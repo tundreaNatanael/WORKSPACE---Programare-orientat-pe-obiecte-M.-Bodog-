@@ -7,6 +7,9 @@
 </head>
 <body>
 	<h1>Songs</h1>
+	
+	<a href="<c:url value="/songs/createSong" />" >Create new song</a>
+	
 	<table border="1">
 		<tr>
 			<th>ID</th>

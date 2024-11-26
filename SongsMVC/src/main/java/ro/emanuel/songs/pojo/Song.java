@@ -56,4 +56,28 @@ public class Song {
 		return nrVotes;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public void setLinkMusicSheet(String linkMusicSheet) {
+		this.linkMusicSheet = linkMusicSheet;
+	}
+
+	public void setVerses(String verses) {
+		this.verses = verses;
+	}
+
+	public void setNrVotes(int nrVotes) {
+		this.nrVotes = nrVotes;
+	}
+
 }

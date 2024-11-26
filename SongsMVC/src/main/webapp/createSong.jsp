@@ -6,16 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Edit song</title>
+<title>Create song</title>
 </head>
 <body>
 	<form:form 
 		method="post"
-		action="${pageContext.request.contextPath}/song/edit"
-		modelAttribute="song"
+		action="${pageContext.request.contextPath}/songs/saveNewSong"
+		modelAttribute="newSong"
 	>
-		<label for="id">ID</label>
-		<form:input path="id"/><br/><br/>
 		
 		<label for="title">title</label>
 		<form:input path="title"/><br/><br/>
